@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gap Assessment</title>
+  <style>
+    :root {
+      --primary-color: #441061;
+      --bg-color: #faf8fd;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+      --text-color: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Layout do Formulário */
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label, .label-mock {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: white;
+    }
+
+    /* Seção de Documentos */
+    .docs-section {
+      background: #f1ecf7;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .docs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .btn-add-doc {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .doc-item {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-color);
+      justify-content: space-between;
+    }
+
+    .doc-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .doc-info:hover {
+      text-decoration: underline;
+    }
+
+    .btn-remove-doc {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cc0000;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    /* Botões de Ação */
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-save {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 2;
+    }
+
+    .btn-back {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    @media (min-width: 600px) {
+      .row {
+        display: flex;
+        gap: 20px;
+      }
+      .row .form-group {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body style="display: none;">
+
+  <div class="breadcrumb" id="breadcrumb"></div>
+
+  <div class="container">
+    <h2 id="pageTitle">Editar Gap Assessment</h2>
+
+    <!-- Primeiro Campo: Setor (Combobox nos moldes de Data Mapping) -->
+    <div class="form-group">
+      <label for="docSector">Setor</label>
+      <select id="docSector">
+        <option value="" disabled selected>Selecione um setor...</option>
+        <!-- Itens serão carregados dinamicamente via JS  -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="docName">Vulnerabilidade Encontrada</label>
+      <input type="text" id="docName" placeholder="Descreva a vulnerabilidade encontrada">
+    </div>
+
+    <div class="form-group">
+      <label for="suggMitigation">Mitigação Sugerida</label>
+      <input type="text" id="suggMitigation" placeholder="Descreva a mitigação sugerida">
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <!--<label for="statusDPO">Status pelo DPO</label>-->
+        <label for="statusDPO">Plano de Ação</label>
+        <input type="text" id="statusDPO" placeholder="Status da análise do DPO">
+      </div>
+      <!--
+      <div class="form-group">
+        <label for="statusClient">Status pelo cliente</label>
+        <input type="text" id="statusClient" placeholder="Status da análise do cliente">
+      </div>
+      -->
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="riskLevel">Nível de risco</label>
+        <select id="riskLevel">
+          <option value="0">Item1</option>
+          <option value="1">Item2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="assessStatus">Status</label>
+        <select id="assessStatus">
+          <option value="0">Item1</option>
+          <option value="1">Item2</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Este Campo de documentos foi herdado e deve permanecer invisível (style="display: none;") -->
+    <div class="form-group" style="display: none;">
+      <span class="label-mock">Documentos Anexados</span>
+      <div class="docs-section">
+        <div class="docs-header">
+          <span id="fileCount">Arquivos (0)</span>
+          <button class="btn-add-doc" id="addFileBtn" type="button">+ Adicionar Arquivo</button>
+          <input type="file" id="hiddenFileInput" style="display: none;">          
+        </div>
+        <div id="fileList">
+          <!-- Lista de arquivos dinâmica -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Datas no final da página -->
+    <div class="row">
+      <div class="form-group">
+        <label for="docDate">Data de Criação</label>
+        <input type="date" id="docDate" value="2026-03-06">
+      </div>
+      <div class="form-group">
+        <label for="finishDate">Data de conclusão</label>
+        <input type="date" id="finishDate">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-back" id="backBtn" type="button">Voltar</button>
+      <button class="btn-save" id="saveBtn" type="button">Salvar Alterações</button>
+    </div>
+  </div>
+
+  <script src="../js/defaultform.js" defer></script>
+  <script src="../js/gap.js" defer></script>
+
+
+</body>
+</html>

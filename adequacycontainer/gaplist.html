@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gap Assessment</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #faf8fd;
+
+      /* Ativa o Flexbox no corpo da página */
+      /*
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 40px);
+      box-sizing: border-box;      
+      */
+    }
+    .breadcrumb {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #441061;
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      margin: 0;
+      color: #441061;
+    }
+    .header button {            
+      background: #ffffff;
+      color: #441061;
+      border: 2px solid #441061;
+      border-radius: 4px;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      cursor: pointer;      
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      table-layout: fixed;
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Melhora rolagem no mobile */
+      border: 1px solid #ddd;      
+/*
+      height: calc(100vh - 360px); 
+      overflow-y: auto;
+*/      
+/*
+      flex: 1; 
+      overflow-y: auto;
+*/      
+    }    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background: #441061;
+      color: white;
+    }
+    td img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    td select {
+      width: 100%;
+    }
+    td a {
+      color: #441061;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+    }
+    td button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 2px;
+      display: inline-block;   /* garante que fiquem lado a lado */
+      vertical-align: middle;  /* alinha verticalmente */            
+    }
+    td button img {
+      width: 16px;
+      height: 16px;
+    }
+    #filterBox {
+        display: none;
+    }    
+    .filter-title {      
+      color: #441061;
+      font-size: 14px;
+      /* font-weight: bold; */
+    }
+    .filter-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+    } 
+    .filter-label {      
+      color: #441061;
+      font-size: 14px;
+      /* font-weight: bold; */
+    }    
+  </style>
+</head>
+<body style="display: none;">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="header">
+    <button id="addBtn">+</button>
+    <h2 id="title"></h2>
+  </div>
+
+
+  <!-- Caixa de filtro -->
+  <fieldset id="filterBox" class="filter-box">
+    <!-- <legend class="filter-title">Filtro</legend> -->
+    <legend class="filter-title" id="filterLegend" style="cursor: pointer;">Filtro ▼</legend>
+
+    <!-- NOVA DIV envolvendo o conteúdo -->
+    <div id="filterContent" style="display: none;">
+
+      <!-- Combo para selecionar o setor -->
+      <div id="sectorContainer" style="margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+        <label for="sectorSelect" class="filter-label">Selecionar o setor </label>
+        <select id="sectorSelect" name="sectorSelect"></select>
+        <button id="editSectorBtn" style="background:none; border:none; cursor:pointer; display: none;">
+          <img src="../images/bteditar.png" alt="Editar" width="16" height="16">
+        </button>    
+      </div>  
+
+      <!-- Combo para selecionar o nível do risco -->
+      <div id="riskContainer" style="margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+        <label for="riskSelect" class="filter-label">Selecionar o Risco </label>
+        <select id="riskSelect" name="riskSelect"></select>   
+      </div>   
+      
+      <!-- Combo para selecionar o status -->
+      <div id="statusContainer" style="margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+        <label for="statusSelect" class="filter-label">Selecionar o Status </label>
+        <select id="statusSelect" name="statusSelect"></select>   
+      </div>     
+
+      <!-- Combo para selecionar as colunas visíveis -->
+      <div id="columnsContainer" style="margin-bottom:15px;">
+        <span class="filter-label">Colunas:</span>
+        <div id="columnsDropdown" style="position:relative; display:inline-block;">
+          <button id="columnsToggle" style="padding:4px 8px;">Selecionar colunas ▼</button>
+          <div id="columnsMenu" style="display:none; position:absolute; background:#fff; border:1px solid #ccc; padding:8px; z-index:1000;">
+            <!-- checkboxes serão inseridos aqui -->
+          </div>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+          <button id="applyColumnsBtn">Aplicar</button>
+          <button id="clearColumnsBtn">Limpar</button>
+          <button id="exportBtn">Exportar</button>
+        </div>
+      </div>
+
+    </div> <!-- FIM DA NOVA DIV -->
+
+  </fieldset>
+
+
+  <div class="table-responsive">
+    <table id="dlvTable">
+      <thead><tr id="tableHeader"></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="../js/export2pdf.js"></script>
+
+  <script src="../js/defaultlistview.js" defer></script>
+  <script src="../js/gaplist.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conscientizações</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #faf8fd;
+    }
+    .breadcrumb {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #441061;
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      margin: 0;
+      color: #441061;
+    }
+    .header button {            
+      background: #ffffff;
+      color: #441061;
+      border: 2px solid #441061;
+      border-radius: 4px;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      cursor: pointer;      
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      table-layout: fixed;
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Melhora rolagem no mobile */
+    }      
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background: #441061;
+      color: white;
+    }
+    td img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+    td select {
+      width: 100%;
+    }
+    td a {
+      color: #441061;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+    }
+    td button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 2px;
+      display: inline-block;   /* garante que fiquem lado a lado */
+      vertical-align: middle;  /* alinha verticalmente */            
+    }
+    td button img {
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body style="display: none;">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="header">
+    <button id="addBtn">+</button>
+    <h2 id="title"></h2>
+  </div>
+
+  <!-- Caixa de filtro -->
+  <fieldset id="filterBox" class="filter-box">
+    <legend class="filter-title">Filtro</legend>
+
+    <!-- Combo para selecionar o setor -->
+    <div id="sectorContainer" style="margin-bottom:15px; display:flex; align-items:center; gap:8px;">
+      <label for="sectorSelect" class="filter-label">Selecionar o setor: </label>
+      <select id="sectorSelect" name="sectorSelect"></select>
+      <button id="editSectorBtn" style="background:none; border:none; cursor:pointer;">
+        <img src="../images/bteditar.png" alt="Editar" width="16" height="16">
+      </button>    
+    </div>  
+
+    <!-- Combo para selecionar as colunas visíveis -->
+    <div id="columnsContainer" style="margin-bottom:15px;">
+      <span class="filter-label">Colunas:</span>
+      <div id="columnsDropdown" style="position:relative; display:inline-block;">
+        <button id="columnsToggle" style="padding:4px 8px;">Selecionar colunas ▼</button>
+        <div id="columnsMenu" style="display:none; position:absolute; background:#fff; border:1px solid #ccc; padding:8px; z-index:1000;">
+          <!-- checkboxes serão inseridos aqui -->
+        </div>
+      </div>
+      <div style="margin-top:10px; display:flex; gap:8px;">
+        <button id="applyColumnsBtn">Aplicar</button>
+        <button id="clearColumnsBtn">Limpar</button>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="table-responsive">
+    <table id="dlvTable">
+      <thead><tr id="tableHeader"></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>  
+
+  <script src="../js/defaultlistview.js" defer></script>
+  <script src="../js/awarenesslist.js" defer></script>
+</body>
+</html>
