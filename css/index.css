@@ -1,0 +1,35 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #faf8fd;
+  font-family: Arial, sans-serif;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#header-frame {
+  height: 60px;
+  border: none;
+  width: 100%;
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+}
+
+#menu-frame {
+  width: 200px;
+  border: none;
+  transition: width 0.3s;
+}
+
+#content-frame {
+  flex: 1;
+  border: none;
+}

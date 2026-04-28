@@ -1,0 +1,67 @@
+body {
+  background-color: #faf8fd;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza tudo horizontalmente */
+  text-align: center;  
+}
+
+/* Garante que o formulário ocupe toda a largura disponível */
+#login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Cria um espaçamento uniforme entre os elementos */
+}
+/* Define a largura padrão e o box-sizing para inputs e botão */
+#login-form input,
+#login-form button {
+  width: 100%; /* Faz o botão ter o mesmo tamanho dos inputs */
+  max-width: 300px; /* Evita que fiquem gigantescos em telas grandes */
+  box-sizing: border-box; /* Garante que padding não quebre a largura */
+}
+
+/* Mantém o texto "Powered by" discreto e alinhado */
+.powered-by {
+  font-size: 11px;
+  color: #818d99; /* Um cinza discreto que combina com a maioria dos temas escuros e claros */
+  margin-top: 20px;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+h2 {
+  color: #441061;
+  margin-bottom: 1rem;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #441061;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
