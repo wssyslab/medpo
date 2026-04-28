@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    :root {
+      --primary-color: #441061;
+      --bg-color: #faf8fd;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+      --text-color: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Layout do Formulário */
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Labels e Spans que imitam labels */
+    label, .label-mock {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      display: block; /* Garante comportamento de bloco */
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="datetime-local"],
+    select,
+    textarea {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Seção de Documentos */
+    .docs-section {
+      background: #f1ecf7;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .docs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .btn-add-doc {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .doc-item {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-color);
+      justify-content: space-between;
+    }
+
+    .doc-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .doc-info:hover {
+      text-decoration: underline;
+    }
+
+    .btn-remove-doc {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cc0000;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    /* Botões de Ação */
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-save {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 2;
+    }
+
+    .btn-back {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    @media (min-width: 600px) {
+      .row {
+        display: flex;
+        gap: 20px;
+      }
+      .row .form-group {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body style="display: none;">
+
+  <div class="breadcrumb" id="breadcrumb"></div>
+
+  <div class="container">
+    <h2 id="pageTitle"></h2>
+
+    <div class="row">
+      <div class="form-group" id="ContainerFieldText1" style="display: none;">
+        <label for="FieldText1" id="LabelFieldText1"></label>
+        <input type="text" id="FieldText1" placeholder="">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group" id="ContainerFieldText2" style="display: none;">
+        <label for="FieldText2" id="LabelFieldText2"></label>
+        <input type="text" id="FieldText2" placeholder="">
+      </div>      
+    </div> 
+
+    <div class="row">
+      <div class="form-group" id="ContainerFieldText3" style="display: none;">
+        <label for="FieldText3" id="LabelFieldText3"></label>
+        <input type="text" id="FieldText3" placeholder="">
+      </div>            
+    </div>
+
+    <div class="row">
+      <div class="form-group" id="ContainerFieldDate1" style="display: none;">
+        <label for="FieldDate1" id="LabelFieldDate1"></label>
+        <input type="date" id="FieldDate1" value="">
+      </div>
+
+      <div class="form-group" id="ContainerFieldDateTime1" style="display: none;">
+        <label for="FieldDateTime1" id="LabelFieldDateTime1"></label>
+        <input type="datetime-local" id="FieldDateTime1" value="">
+      </div>      
+    
+      <div class="form-group" id="ContainerRiskLevel" style="display: none;">
+        <label for="ComboRiskLevel" id="LabelRiskLevel">Nível de risco</label>
+        <select id="ComboRiskLevel">
+          <option value="0">Item1</option>
+          <option value="1">Item2</option>
+        </select>
+      </div>
+      <div class="form-group" id="ContainerStatusLevel" style="display: none;">
+        <label for="ComboStatusLevel" id="LabelStatusLevel">Status</label>
+        <select id="ComboStatusLevel">
+          <option value="0">Item1</option>
+          <option value="1">Item2</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group" id="ContainerFieldDate2" style="display: none;">
+        <label for="FieldDate2" id="LabelFieldDate2"></label>
+        <input type="date" id="FieldDate2" value="">
+      </div>      
+      <div class="form-group" id="ContainerFieldDate3" style="display: none;">
+        <label for="FieldDate3" id="LabelFieldDate3"></label>
+        <input type="date" id="FieldDate3" value="">
+      </div>            
+    </div>
+
+    <div class="form-group" style="display: none;"  id="ContainerAttach">
+      <span class="label-mock">Documentos Anexados</span>
+      <div class="docs-section">
+        <div class="docs-header">
+          <span id="fileCount"></span>
+          <button class="btn-add-doc" id="addFileBtn" type="button" onclick="dispararUpload()">+ Adicionar Arquivo</button>
+          <!-- Input invisível -->
+          <!-- Se você quiser que no celular o usuário possa escolher 
+               entre Tirar Foto ou Escolher Arquivo, adicione o atributo accept no input: 
+               Para qualquer arquivo: type="file"
+               Apenas imagens: type="file" accept="image/*"               
+          -->
+          <input type="file" id="hiddenFileInput" style="display: none;" onchange="InserirArquivoNoBuffer(this)">          
+        </div>
+        
+        <div id="fileList">
+          <div class="doc-item" id="doc_0">
+            <a href="../dummydata/dummy1.pdf" target="_blank" class="doc-info">
+              <img src="../images/file_16.png" alt="File" width="16">
+              <span>Doc1</span>
+            </a>
+            <button class="btn-remove-doc" title="Remover" type="button">✕</button>
+          </div>
+
+          <div class="doc-item" id="doc_1">
+            <a href="../dummydata/dummy2.pdf" target="_blank" class="doc-info">
+              <img src="../images/file_16.png" alt="File" width="16">
+              <span>Doc2</span>
+            </a>
+            <button class="btn-remove-doc" title="Remover" type="button">✕</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-group" id="ContainerMemo1" style="display: none;">
+      <label for="FieldMemo1" id="LabelFieldMemo1"></label>
+      <textarea id="FieldMemo1"></textarea>
+    </div>
+
+    <div class="actions" id="ContainerActButtons" style="display: none;">
+      <button class="btn-back" id="backBtn" type="button">Voltar</button>
+      <button class="btn-save" id="saveBtn" type="button">Salvar Alterações</button>
+    </div>
+  </div>
+
+  <script src="../js/routinedefs.js" defer></script>
+  <script src="../js/defaultform.js" defer></script>
+  <script src="../js/formroutine.js" defer></script>
+</body>
+</html>
