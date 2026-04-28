@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Me.DPO</title>
+  <link rel="stylesheet" href="css/index.css">    
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/common.js" defer></script>
+  <script src="./js/index.js" defer></script>
+  <script src="./js/dbgeneraldocshandler.js" defer></script>
+  <script src="./js/dbpolicieshandler.js" defer></script>
+  <script src="./js/dbawarenesshandler.js" defer></script>
+  <script src="./js/dbvisionhandler.js" defer></script>
+  <script src="./js/dbdatamappinghandler.js" defer></script>
+  <script src="./js/dbgaphandler.js" defer></script>
+  <script src="./js/dbprojectshandler.js" defer></script>
+  <script src="./js/dbmeettingshandler.js" defer></script>
+  <script src="./js/dbcontractmgmthandler.js" defer></script>
+  <script src="./js/dbtrainingshandler.js" defer></script>
+  <script src="./js/dbauditshandler.js" defer></script>
+  <script src="./js/dbincidentshandler.js" defer></script>
+  <script src="./js/dbcustomerscommhandler.js" defer></script>
+  <script src="./js/dbholderscommhandler.js" defer></script>
+  <script src="./js/dbanpdcommhandler.js" defer></script>
+  
+</head>
+<body style="display: none;">
+  <div class="layout">
+    <!-- Topo -->
+    <!-- <iframe id="header-frame" src="header.html"></iframe> -->
+    <!-- usar data-src ao inves de src impede que o navegador carregue a página do iframe automaticamente. --> 
+    <iframe id="header-frame" data-src="header.html"></iframe>
+
+    <div class="main-area">
+      <!-- Menu lateral -->
+      <!-- <iframe id="menu-frame" src="menu.html"></iframe> -->
+      <iframe id="menu-frame" data-src="menu.html"></iframe>
+
+      <!-- Conteúdo principal -->
+      <!-- <iframe id="content-frame" src="welcome.html"></iframe> -->
+      <iframe id="content-frame" data-src="welcome.html"></iframe>
+    </div>
+  </div>  
+</body>
+</html>

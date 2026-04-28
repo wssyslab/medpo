@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Projeto</title>
+  <style>
+    :root {
+      --primary-color: #441061;
+      --bg-color: #faf8fd;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+      --text-color: #333;
+      --danger-color: #d9534f;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .breadcrumb {
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    .input-with-btn {
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: white;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-img-action {
+      padding: 0 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid var(--primary-color);
+      background: white;
+      color: var(--primary-color);
+      white-space: nowrap;
+    }
+    .btn-img-action:hover {
+      background: #f1ecf7;
+    }
+
+    .sector-table {
+      width: 100%;
+      border-collapse: collapse;
+      /* margin-top: 10px; */
+    }
+
+    .sector-table th, .sector-table td {
+      border: 1px solid var(--border-color);
+      padding: 8px;
+      text-align: left;
+    }
+
+    .sector-table th {
+      background-color: #f1ecf7;
+      color: var(--primary-color);
+      font-size: 14px;
+    }
+
+    .input-edit-table {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      padding: 4px;
+    }
+
+    .input-edit-table:focus {
+      outline: 1px solid var(--primary-color);
+      background: white;
+    }
+
+    .btn-table-add {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-table-remove {
+      background: var(--danger-color);
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-save {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 2;
+    }
+
+    .btn-back {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .label-mock {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      display: block;
+    }    
+/*
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      table-layout: fixed;
+    }
+*/
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Melhora rolagem no mobile */
+      margin-top: 10px;
+    }
+
+    /* Força uma largura mínima para a tabela não esmagar */
+    .sector-table {
+      width: 100%;      
+      border-collapse: collapse;
+      table-layout: fixed; /* Ajuda a fixar o tamanho das colunas */
+    }
+
+    /* Distribui larguras fixas para cada coluna */
+    .sector-table th:nth-child(1), .sector-table td:nth-child(1) { width: 300px; } /* Nome */
+    .sector-table th:nth-child(2), .sector-table td:nth-child(2) { width: 200px; } /* Cargo */
+    .sector-table th:nth-child(3), .sector-table td:nth-child(3) { width: 200px; } /* Telefone */
+    .sector-table th:nth-child(4), .sector-table td:nth-child(4) { width: 300px; } /* E-mail */
+    .sector-table th:nth-child(5), .sector-table td:nth-child(5) { width: 100px; } /* Ação */    
+  </style>
+</head>
+<body>
+
+  <div class="breadcrumb" id="breadcrumb">
+    <!-- <span>Início</span> > <span>Projetos</span> > Editar Projeto -->
+  </div>
+
+  <div class="container">
+    <h2 id="pageTitle">Editar Projeto</h2>
+
+    <!-- Nome do Projeto -->
+    <div class="form-group">
+      <label for="projectName">Nome do projeto</label>
+      <input type="text" id="projectName" name="projectName" placeholder="Digite o nome do novo projeto">
+    </div>
+
+    <!-- Imagem do Projeto -->
+    <div class="form-group">
+      <label for="projectImage">Imagem do projeto</label>
+      <div class="input-with-btn">
+        <input type="text" id="projectImage" name="projectImage" value="images/default_project.png" readonly>
+        <button type="button" id="btClear" class="btn-img-action">Limpar</button>
+        <button type="button" id="btView" class="btn-img-action">Visualizar</button>
+        <button type="button" id="btLoad" class="btn-img-action">Carregar</button>
+        <input type="file" id="hiddenFileProject" style="display: none;" accept="image/*">
+      </div>
+    </div>
+
+    <!-- CNPJ e Data -->
+    <div style="display: flex; gap: 20px;">
+      <div class="form-group" style="flex: 1;">
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ">
+      </div>
+      <div class="form-group" style="flex: 1;">
+        <label for="startDate">Data de Início</label>
+        <input type="date" id="startDate" name="startDate" value="2026-03-06">
+      </div>
+    </div>
+
+    <!-- Comitê de Crise -->
+    <div class="form-group">
+      <span class="label-mock">Membros do Comitê de Crise</span>
+
+      <div class="table-responsive">
+        <table class="sector-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Cargo</th>
+              <th>Telefone</th>
+              <th>E-Mail</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody  id="tbCommittee">
+            <!-- Linha de Adição -->
+            <tr>
+              <td><input type="text" id="new_member_name" name="new_member_name" aria-label="Nome do novo membro" class="input-edit-table" placeholder="Nome do novo membro"></td>
+              <td><input type="text" id="new_member_role" name="new_member_role" aria-label="Cargo do novo membro" class="input-edit-table" placeholder="Digite o cargo"></td>
+              <td><input type="text" id="new_member_phone" name="new_member_phone" aria-label="Telefone do novo membro" class="input-edit-table" placeholder="Digite o telefone"></td>
+              <td><input type="text" id="new_member_email" name="new_member_email" aria-label="Email do novo membro" class="input-edit-table" placeholder="Digite o email"></td>
+              <td style="text-align: center;"><button type="button" class="btn-table-add" id="addButton">Adicionar</button></td>
+            </tr>
+            <!-- Membro Fictício 1 -->
+            <tr>
+              <td><input type="text" name="member_name_1" aria-label="Nome do membro 1" class="input-edit-table" value="Fulano Ciclano"></td>
+              <td><input type="text" name="member_role_1" aria-label="Cargo do membro 1" class="input-edit-table" value="CTO"></td>
+              <td><input type="text" name="member_phone_1" aria-label="Telefone do membro 1" class="input-edit-table" value="+55 99 1234-7845"></td>
+              <td><input type="text" name="member_email_1" aria-label="Email do membro 1" class="input-edit-table" value="fulano@email.com"></td>
+              <td style="text-align: center;"><button type="button" class="btn-table-remove">Remover</button></td>
+            </tr>
+            <!-- Membro Fictício 2 -->
+            <tr>
+              <td><input type="text" name="member_name_2" aria-label="Nome do membro 2" class="input-edit-table" value="Beltrano Beldade"></td>
+              <td><input type="text" name="member_role_2" aria-label="Cargo do membro 2" class="input-edit-table" value="Jurídico"></td>
+              <td><input type="text" name="member_phone_2" aria-label="Telefone do membro 2" class="input-edit-table" value="+55 99 1234-7845"></td>
+              <td><input type="text" name="member_email_2" aria-label="Email do membro 2" class="input-edit-table" value="beltrano@email.com"></td>
+              <td style="text-align: center;"><button type="button" class="btn-table-remove">Remover</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Observações -->
+    <div class="form-group">
+      <label for="observations">Observações</label>
+      <textarea id="observations" name="observations" placeholder="Insira observações relevantes sobre o projeto"></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn-back" id="backBtn" type="button">Voltar</button>
+      <button class="btn-save" id="saveBtn" type="button">Salvar Alterações</button>
+    </div>
+
+  </div>
+
+  <script src="./js/project.js"></script>
+
+</body>
+</html>

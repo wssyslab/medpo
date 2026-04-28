@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuração de Setores</title>
+  <style>
+    :root {
+      --primary-color: #441061;
+      --bg-color: #faf8fd;
+      --card-bg: #ffffff;
+      --border-color: #ddd;
+      --text-color: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .breadcrumb {
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: var(--primary-color);
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    /* Input com Botão ao Lado */
+    .input-with-btn {
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .btn-add-sector {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Tabela de Setores */
+    .sector-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .sector-table th, .sector-table td {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .sector-table th {
+      background-color: #f1ecf7;
+      color: var(--primary-color);
+    }
+
+    .col-id { width: 60px; text-align: center !important; background: #f9f9f9; }
+    .col-visible { width: 80px; text-align: center !important; }
+
+    .input-edit-table {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      padding: 4px;
+    }
+
+    .input-edit-table:focus {
+      outline: 1px solid var(--primary-color);
+      background: white;
+    }
+
+    /* Botões de Ação */
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-save {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 2;
+    }
+
+    .btn-back {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    /* Estilo para spans que funcionam como títulos de seção/labels */
+    .label-mock {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      display: block; /* Garante que ocupe a linha toda como um label */
+    }    
+  </style>
+</head>
+<body>
+
+  <div class="breadcrumb" id="breadcrumb"></div>
+
+  <div class="container">
+    <h2 id="pageTitle">Editar Setor</h2>
+
+    <!-- Campo de Inclusão -->
+    <div class="form-group">
+      <label for="newSectorName">Novo Setor</label>
+      <div class="input-with-btn">
+        <input type="text" id="newSectorName" placeholder="Digite o nome do novo Setor">
+        <button type="button" id="btnAddSector" class="btn-add-sector" title="Adicionar Setor">+</button>
+      </div>
+    </div>
+
+    <!-- Lista de Setores -->
+    <div class="form-group">
+      <!-- <label >Gerenciar Setores</label> -->
+      <span class="label-mock">Gerenciar Setores</span>
+      <table class="sector-table" id="sectorTable">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th>Nome</th>
+            <th class="col-visible">Visível</th>
+          </tr>
+        </thead>
+        <tbody id="sectorTableBody">
+          <!-- Linha 0 -->
+          <tr>
+            <td class="col-id">0</td>
+            <td><input type="text" id="name_sector_0" name="name_sector_0" aria-label="Nome do Setor 0" class="input-edit-table" value="Setor0"></td>
+            <td class="col-visible"><input type="checkbox" id="vis_0" name="vis_0" aria-label="Marcar setor como visível" checked></td>
+          </tr>
+          <!-- Linha 1 -->
+          <tr>
+            <td class="col-id">1</td>
+            <td><input type="text" id="name_sector_1" name="name_sector_1" aria-label="Nome do Setor 1" class="input-edit-table" value="Setor1"></td>
+            <td class="col-visible"><input type="checkbox" id="vis_1" name="vis_1" aria-label="Marcar setor como visível" checked></td>
+          </tr>
+          <!-- Linha 2 -->
+          <tr>
+            <td class="col-id">2</td>
+            <td><input type="text" id="name_sector_2" name="name_sector_2" aria-label="Nome do Setor 2" class="input-edit-table" value="Setor2"></td>
+            <td class="col-visible"><input type="checkbox" id="vis_2" name="vis_2" aria-label="Marcar setor como visível" checked></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Este Campo de documentos foi herdado e deve permanecer invisível (style="display: none;") -->
+    <div class="form-group" style="display: none;">
+      <span class="label-mock">Documentos Anexados</span>
+      <div class="docs-section">
+        <div class="docs-header">
+          <span id="fileCount">Arquivos (0)</span>
+          <button class="btn-add-doc" id="addFileBtn" type="button">+ Adicionar Arquivo</button>
+          <input type="file" id="hiddenFileInput" style="display: none;">          
+        </div>
+        <div id="fileList">
+          <!-- Lista de arquivos dinâmica -->
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-back" id="backBtn" type="button">Voltar</button>
+      <button class="btn-save" id="saveBtn" type="button">Salvar Alterações</button>
+    </div>
+
+  </div>
+
+  <script src="./js/sector.js"></script>
+
+</body>
+</html>

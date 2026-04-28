@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #faf8fd;
+    }
+    .breadcrumb {
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #441061;
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    h2 {
+      text-align: center;
+      color: #441061;
+      margin-bottom: 20px;
+    }    
+    .cards-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: white;
+      border: 2px solid #441061;
+      border-radius: 8px;
+      width: 140px;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 16px;
+      height: 16px;
+      margin-bottom: 8px;
+    }
+    .card .main-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #441061;
+    }
+    .card .sub-text {
+      font-size: 12px;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #441061;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb" id="breadcrumb"></div>
+
+  <!-- Título -->
+  <h2>Dashboard</h2>
+
+  <!-- Gráfico Pizza: Gaps por Status -->
+  <!-- <div style="width: 300px; height: 300px;"></div> -->
+  <!-- <div style="height: 200px;"> -->
+  <div style="width: 300px; height: 200px; margin-bottom: 10px;">
+    <!-- <h3 style="color: #441061; font-size: 16px; font-weight: bold; margin-bottom: 10px; text-align: left;"> -->
+    <h3 style="color: #441061; font-size: 16px; font-weight: bold; margin-bottom: -15px; text-align: left;">
+      Gaps por Status
+    </h3>    
+    <canvas id="pcGapsPerStatus"></canvas>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards-container" id="cards"></div>
+
+  <!-- Tabela -->
+  <table>
+    <thead>
+      <tr>
+        <th>Setor</th>
+        <th>Identificados</th>
+        <th>Resolvidos</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <!-- <script src="https://jsdelivr.net"></script> -->
+  <script src="./chart.umd.min.js"></script>
+  <script src="./js/dashboard.js"></script>
+</body>
+</html>

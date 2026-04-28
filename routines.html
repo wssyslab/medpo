@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Rotinas</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #faf8fd;
+    }
+    .breadcrumb {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #441061;
+    }
+    .breadcrumb span {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    h2 {
+      text-align: center;
+      color: #441061;
+      margin-bottom: 20px;
+    }
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      border: 2px solid #441061;
+      border-radius: 8px;
+      width: 140px;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 16px;
+      height: 16px;
+      margin-bottom: 8px;
+    }
+    .card .text1 {
+      font-size: 12px;      
+      color: #2F2933;
+    }
+    .card .text2 {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      font-size: 10px;
+      color: #441061;
+    }
+  </style>
+</head>
+<body>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb" id="breadcrumb"></div>
+
+  <!-- Título -->
+  <h2>Rotinas</h2>
+
+  <!-- Cards -->
+  <div class="cards-container" id="cards"></div>
+
+  <script src="./js/routines.js"></script>
+</body>
+</html>

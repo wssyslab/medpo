@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div style="background:#ffffff; color:#441061; height:100%; display:flex; flex-direction:column; border-right:1px solid #ccc;">
+    <!-- Botão recolher -->
+    <button onclick="toggleMenu()" 
+            style="background:#441061; color:white; border:none; padding:6px; cursor:pointer;">
+      ☰
+    </button>
+
+    <!-- Navegação -->
+    <nav id="menu-items" style="flex:1; display:flex; flex-direction:column; gap:10px; padding:10px;">
+      <button onclick="parent.document.getElementById('content-frame').src='dashboard.html'" 
+              style="background:none; border:none; color:#2F2933; cursor:pointer; text-align:left; display:flex; align-items:center; gap:6px;">
+        <img src="images/dashboard.png" alt="Dashboard" style="width:16px; height:16px;">
+        Dashboard
+      </button>
+
+      <button onclick="parent.document.getElementById('content-frame').src='adequacy.html'" 
+              style="background:none; border:none; color:#2F2933; cursor:pointer; text-align:left; display:flex; align-items:center; gap:6px;">
+        <img src="images/adequacao.png" alt="Adequação" style="width:16px; height:16px;">
+        Adequação
+      </button>      
+
+      <button onclick="parent.document.getElementById('content-frame').src='routines.html'" 
+              style="background:none; border:none; color:#2F2933; cursor:pointer; text-align:left; display:flex; align-items:center; gap:6px;">
+        <img src="images/rotinas.png" alt="Rotinas" style="width:16px; height:16px;">
+        Rotinas
+      </button>            
+      
+      <button onclick="parent.document.getElementById('content-frame').src='project.html?id=' + parent.getCurrentProject()"
+              style="background:none; border:none; color:#2F2933; cursor:pointer; text-align:left; display:none; align-items:center; gap:6px;"
+              id="editProjectBtn">
+        <img src="images/editar_projeto.png" alt="Editar projeto" style="width:16px; height:16px;">
+        Editar projeto
+      </button>            
+    </nav>
+  </div>
+
+  <script  src="./js/menu.js"></script>
+</body>
+</html>
