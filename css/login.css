@@ -63,5 +63,65 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  /* Efeito de transição suave */
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+/* Efeito ao passar o mouse */
+button:hover {
+  background-color: #5c1882; /* Um roxo um pouco mais claro */
 }
 
+/* Efeito de clique (afunda levemente) */
+button:active {
+  transform: scale(0.97);
+}
+
+/* Ajustes específicos para telas de celular */
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start; /* Evita que o teclado do celular cubra o login */
+    padding-top: 2rem;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .login-container {
+    width: 90%; /* Faz a caixa ocupar quase toda a largura da tela */
+    padding: 2.5rem 1.5rem; /* Aumenta o respiro interno */
+    box-shadow: none; /* Em celular, layouts "flat" costumam ficar mais elegantes */
+    background-color: transparent; /* Remove o fundo branco para integrar com o fundo do app */
+  }
+
+  #login-form input,
+  #login-form button {
+    max-width: 100%; /* Permite que cresçam até o limite da caixa */
+    font-size: 16px; /* Evita que o iPhone dê zoom automático ao focar no input */
+  }
+}
+
+/* Estado de carregamento do botão */
+button.is-loading {
+  color: transparent; /* Esconde o texto "Entrar" */
+  position: relative;
+  pointer-events: none; /* Bloqueia cliques extras */
+}
+
+/* O desenho do círculo (spinner) */
+button.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: girar 0.6s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}

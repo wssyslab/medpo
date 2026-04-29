@@ -3,12 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="css/index.css">
+  <style>
+    /* Remove margens do body e esconde barras de rolagem */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Esconde o scroll */
+      background: transparent; /* Garante que não fique fundo branco sobrando */
+    }    
+    /* Remove a borda lateral que não faz sentido no modo popup */
+    div[style*="border-right"] {
+      border-right: none !important;
+    }    
+    /* Melhora os botões apenas quando estiverem dentro do popup do celular */
+    nav#menu-items button {
+      padding: 12px 16px !important; /* Mais área de toque */
+      font-size: 16px !important; /* Letra um pouco maior */
+      border-radius: 8px;
+      transition: background 0.2s;
+      width: 100%; /* Garante que o clique pegue em toda a linha */
+    }
+    
+    nav#menu-items button:active {
+      background-color: #f3ebf6 !important; /* Feedback visual ao clicar */
+    }
+
+    nav#menu-items img {
+      width: 20px !important; /* Ícones levemente maiores */
+      height: 20px !important;
+    }
+  </style>  
 </head>
 <body>
   <div style="background:#ffffff; color:#441061; height:100%; display:flex; flex-direction:column; border-right:1px solid #ccc;">
     <!-- Botão recolher -->
-    <button onclick="toggleMenu()" 
-            style="background:#441061; color:white; border:none; padding:6px; cursor:pointer;">
+    <button id="expandMenuBtn" onclick="toggleMenu()" 
+            style="background:#441061; color:white; border:none; padding:6px; cursor:pointer; display: none;">
       ☰
     </button>
 

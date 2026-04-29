@@ -33,3 +33,38 @@ body, html {
   flex: 1;
   border: none;
 }
+
+/* Container que cobre a tela e fica por cima de tudo */
+#mobile-menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Escurece o fundo atrás da caixinha */
+  z-index: 9999;
+}
+
+/* O iframe do menu transformado em popup flutuante */
+#mobile-menu-frame {
+  width: calc(100% - 40px); /* Ocupa quase toda a largura em telas pequenas */
+  max-width: 200px; /* Mas não passa de 320px para não ficar gigante */
+  height: 230px; 
+  /* max-height: 500px; */
+  
+  background: white;
+  border: none;
+  border-radius: 16px; /* Bordas mais arredondadas e modernas */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* Sombra mais suave e profunda */
+  
+  /* Posicionamento flutuante na tela */
+  position: absolute;
+  top: 75px; 
+  left: 20px; 
+}
+
+/* Classe para esconder o menu */
+.hidden {
+  display: none !important;
+}
+
