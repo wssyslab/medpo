@@ -48,5 +48,26 @@
     <iframe id="mobile-menu-frame" data-src="menu.html"></iframe>
   </div>
 
+  <!-- Modal de Alteração de Senha -->
+  <div id="modal-senha-container" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 20px; border-radius: 12px; width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+      <h3 style="margin-top: 0; color: #4E4552;">Alterar Senha</h3>
+
+      <label style="display:block; font-size: 12px; margin-bottom: 4px;">Senha Atual:</label>
+      <input type="password" id="senha-atual" style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+
+      <label style="display:block; font-size: 12px; margin-bottom: 4px;">Nova Senha:</label>
+      <input type="password" id="nova-senha" style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+      
+      <label style="display:block; font-size: 12px; margin-bottom: 4px;">Confirme a Senha:</label>
+      <input type="password" id="confirma-senha" style="width: 100%; padding: 8px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+      
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button onclick="fecharModalSenha()" style="background: #eee; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer;">Cancelar</button>
+        <button onclick="executarTrocaSenha()" style="background: #4E4552; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer;">Salvar</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
