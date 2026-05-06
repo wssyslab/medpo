@@ -35,22 +35,24 @@
       align-items: center;   
       display: none; /* inicia os botoes invisiveis - ativa via JS se o usuario for admin */   
     } 
-     
+
     .projects-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 140px)); /* fixa a largura da coluna */
       gap: 20px;
-      justify-items: center;
+      justify-content: start;      
+      padding: 10px;
     }
     .project-card {
       background: white;
       border: 2px solid #441061;
       border-radius: 8px;
-      width: 120px;
+      width: 130px; /* era 120px. Aumentei um pouco para equilibrar com a imagem de 90px */
       text-align: center;
       cursor: pointer;
       transition: transform 0.2s;
       overflow: hidden;
+      flex-shrink: 0; /* Impede o card de espremer */
     }
     .project-card:hover {
       transform: scale(1.05);

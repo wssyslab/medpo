@@ -93,7 +93,7 @@
       color: var(--primary-color);
     }
 
-    .col-id { width: 60px; text-align: center !important; background: #f9f9f9; }
+    .col-id { display: none; width: 60px; text-align: center !important; background: #f9f9f9; }
     .col-visible { width: 80px; text-align: center !important; }
 
     /* Botões de Ação */
@@ -134,9 +134,51 @@
       color: var(--primary-color);
       display: block; /* Garante que ocupe a linha toda como um label */
     }    
+
+    /* Início: Camada de fundo que trava a tela */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Escurece 50% */
+      z-index: 9999; /* Fica acima de tudo */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    /* O Spinner (estilo similar ao seu botão de login) */
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: girar 0.8s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes girar {
+      to { transform: rotate(360deg); }
+    }    
+    /* Fim: Camada de fundo que trava a tela */
+
   </style>
 </head>
-<body>
+<body style="display: none;">
+
+  <!-- Overlay Global (camada que cobre tudo) para travar a 
+       tela inteira com efeito de "escurecimento" e uma 
+       ampulheta (spinner). Por padrão esse div não aparece -->
+  <div id="global-loader" class="overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p>Carregando...</p>
+  </div>     
 
   <div class="breadcrumb" id="breadcrumb"></div>
 
