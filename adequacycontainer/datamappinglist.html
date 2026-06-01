@@ -61,6 +61,16 @@
       background: #441061;
       color: white;
     }
+    
+    /* O cursor e o efeito hover só vai funcionar nos <th> que tiverem a classe .sortable */
+    /* Isso é para que apenas as colunas que podem ser utilizadas para ordenação tenha um cursor diferente e um fundo diferente ao passar o mouse*/  
+    th.sortable {
+      cursor: pointer;
+    }    
+    th.sortable:hover {
+      background: #5a187a; /* Muda de cor apenas se for clicável */
+    }
+
     td img {
       max-width: 100%;
       height: auto;
@@ -187,7 +197,14 @@
         <div style="margin-top:10px; display:flex; gap:8px;">
           <button id="applyColumnsBtn">Aplicar</button>
           <button id="clearColumnsBtn">Limpar</button>
-          <button id="exportBtn">Exportar</button>
+          <div style="position: relative; display: inline-block;">
+            <button id="exportBtn">Exportar</button>
+            <!-- Menu que começa escondido para seleção do tipo de exportação. -->
+            <div id="exportMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #441061; border-radius: 4px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); z-index: 1000; min-width: 100px;">
+                <button id="btnPdf" style="display: block; width: 100%; text-align: left; padding: 8px 12px; background: none; border: none; cursor: pointer; color: #441061;">📄 PDF</button>
+                <button id="btnCsv" style="display: block; width: 100%; text-align: left; padding: 8px 12px; background: none; border: none; cursor: pointer; color: #441061; border-top: 1px solid #eee;">📊 CSV</button>
+            </div>   
+          </div>         
         </div>
       </div>
 
@@ -203,6 +220,8 @@
       <tbody id="tableBody"></tbody>
     </table>
   </div>  
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>

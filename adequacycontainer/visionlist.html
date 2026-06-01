@@ -60,6 +60,16 @@
       background: #441061;
       color: white;
     }
+
+    /* O cursor e o efeito hover só vai funcionar nos <th> que tiverem a classe .sortable */
+    /* Isso é para que apenas as colunas que podem ser utilizadas para ordenação tenha um cursor diferente e um fundo diferente ao passar o mouse*/  
+    th.sortable {
+      cursor: pointer;
+    }    
+    th.sortable:hover {
+      background: #5a187a; /* Muda de cor apenas se for clicável */
+    }
+
     td img {
       max-width: 100%;
       height: auto;
